@@ -4,12 +4,14 @@ import API from "./utils/API";
 
 interface AppState {
   input: string;
+  data: any;
 }
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 type FormEvent = React.MouseEvent<HTMLFormElement>;
 class App extends React.Component<{}, AppState> {
   state = {
-    input: ""
+    input: "",
+    data: null,
   };
   handleChange = (event: InputEvent) => {
     this.setState({ input: event.target.value });
@@ -17,16 +19,22 @@ class App extends React.Component<{}, AppState> {
   handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     const res = await API.post("/metainfo", { url: this.state.input });
+    this.setState({ data: res.data });
     console.log("res ", res.data);
   };
   render() {
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <input type="url" onChange={this.handleChange} autoFocus required />
-          <button type="submit">Show preview</button>
-        </form>
-      </div>
+      <main>
+        <div className="container">
+          <form onSubmit={this.handleSubmit}>
+            <input type="url" onChange={this.handleChange} autoFocus required />
+            <button type="submit">Show preview</button>
+          </form>
+        </div>
+        <div className="container">
+          {this.state.data && <pre>{JSON.stringify(this.state.data)}</pre>}
+        </div>
+      </main>
     );
   }
 }

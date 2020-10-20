@@ -9,13 +9,13 @@
   "author": "Benjamin Meier",
   "license": "ISC",
   "dependencies": {
-    "browserless": "^5.19.14",
+    "browserless": "^8.1.31",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "get-video-id": "^3.1.4",
-    "puppeteer": "^2.0.0"
+    "puppeteer": "^5.3.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.6"
   }
 }
