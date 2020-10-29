@@ -8,6 +8,7 @@ interface AppState {
 }
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 type FormEvent = React.MouseEvent<HTMLFormElement>;
+
 class App extends React.Component<{}, AppState> {
   state = {
     input: "",
@@ -31,7 +32,7 @@ class App extends React.Component<{}, AppState> {
             <button type="submit">Show preview</button>
           </form>
         </div>
-        <div className="container">
+        <div>
           {this.state.data && <pre>{JSON.stringify(this.state.data)}</pre>}
         </div>
       </main>
