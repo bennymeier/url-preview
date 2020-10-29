@@ -19,7 +19,7 @@ class App extends React.Component<{}, AppState> {
   };
   handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    const res = await API.post("/metainfo", { url: this.state.input });
+    const res = await API.get(`/metainfo?url=${this.state.input}`);
     this.setState({ data: res.data });
     console.log("res ", res.data);
   };
@@ -28,7 +28,7 @@ class App extends React.Component<{}, AppState> {
       <main>
         <div className="container">
           <form onSubmit={this.handleSubmit}>
-            <input type="url" onChange={this.handleChange} autoFocus required />
+            <input placeholder="https://..." type="url" onChange={this.handleChange} autoFocus required />
             <button type="submit">Show preview</button>
           </form>
         </div>
