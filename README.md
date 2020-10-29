@@ -10,6 +10,8 @@
 ---
 ###### Todos
 * Show preview component in web
+* Make screenshot from website and show it
+* Implement cache mechanism
 * Write tests
 * Add [puppeteer-extra](https://www.npmjs.com/package/puppeteer-extra) library for using plugins
 * Add [puppeteer-extra-plugin-stealth](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth)
