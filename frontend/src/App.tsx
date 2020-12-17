@@ -1,42 +1,40 @@
-import React from "react";
-import "./App.css";
-import API from "./utils/API";
+import React, { FormEvent, useState } from 'react';
+import './App.css';
+import LinkPreview from './components/LinkPreview';
 
-interface AppState {
-  input: string;
-  data: any;
-}
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
-type FormEvent = React.MouseEvent<HTMLFormElement>;
 
-class App extends React.Component<{}, AppState> {
-  state = {
-    input: "",
-    data: null,
+const App = () => {
+  const [input, setInput] = useState('');
+  const [showPreview, setPreview] = useState(false);
+  const handleChange = (event: InputEvent) => {
+    setInput(event.target.value);
   };
-  handleChange = (event: InputEvent) => {
-    this.setState({ input: event.target.value });
-  };
-  handleSubmit = async (event: FormEvent) => {
+
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    const res = await API.get(`/metainfo?url=${this.state.input}`);
-    this.setState({ data: res.data });
-    console.log("res ", res.data);
+    setPreview(true);
   };
-  render() {
-    return (
-      <main>
-        <div className="container">
-          <form onSubmit={this.handleSubmit}>
-            <input placeholder="https://..." type="url" onChange={this.handleChange} autoFocus required />
-            <button type="submit">Show preview</button>
-          </form>
-        </div>
-        <div>
-          {this.state.data && <pre>{JSON.stringify(this.state.data)}</pre>}
-        </div>
-      </main>
-    );
-  }
-}
+
+  return (
+    <main>
+      <div className="container">
+        <form onSubmit={handleSubmit}>
+          <div className="url-group">
+            <input
+              placeholder="https://..."
+              type="url"
+              onChange={handleChange}
+              autoFocus
+              required
+            />
+            <button type="submit">Preview</button>
+          </div>
+        </form>
+      </div>
+      {showPreview && <LinkPreview url={input} />}
+    </main>
+  );
+};
+
 export default App;

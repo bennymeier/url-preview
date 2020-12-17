@@ -1,11 +1,63 @@
 body {
-  background-color: #282c34;
+  background-color: #fdf1ec;
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #686868;
 }
 
 .container {
   display: flex;
   justify-content: center;
+}
+
+.url-group {
+  display: flex;
+  margin: 1em;
+}
+
+.url-group input {
+  height: 40px;
+  border: none;
+  padding: 1.5px;
+  padding: 0 1em;
+  border-radius: 8px 0 0 8px;
+  border-color: transparent;
+  width: 70%;
+  margin: 0;
+  font-size: 0.7em;
+  color: #8d8d8d;
+}
+
+.url-group input:focus {
+  outline: none;
+  color: #4e4e4e;
+  background-color: #6868681f;
+  border-radius: 8px 0 0 8px;
+}
+
+.url-group button {
+  cursor: pointer;
+  max-height: 40px;
+  border: none;
+  border-radius: 0 10px 10px 0;
+  letter-spacing: 0.1em;
+  color: #fff;
+  background-color: #ffa9be;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none !important;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.url-group button:active {
+  border: none;
+  outline: none;
+}
+
+.url-group button:hover {
+  transform: scale(1.03);
 }
