@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { shortenizeUrl } from '../utils';
 import API from '../utils/API';
+import Loader from './Loader';
 
 interface LinkPreviewData {
   title: string;
@@ -46,7 +47,7 @@ const LinkPreview: React.FC<LinkPreviewProps> = (props) => {
   }, []);
 
   if (isLoading) {
-    return <div className="loading">LOADING...</div>;
+    return <Loader />;
   }
   if (error) {
     return <div className="error">{error}</div>;

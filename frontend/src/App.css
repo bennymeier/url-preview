@@ -61,3 +61,37 @@ body {
 .url-group button:hover {
   transform: scale(1.03);
 }
+
+.bubbles span {
+  display: inline-block;
+  vertical-align: middle;
+  width: 15px;
+  height: 15px;
+  margin: 150px auto;
+  background: #fe576c;
+  border-radius: 50%;
+  animation: bubbly 0.9s infinite alternate;
+}
+
+/* Bubbles */
+#bubble2 {
+  animation-delay: 0.27s;
+}
+#bubble3 {
+  animation-delay: 0.54s;
+}
+
+@keyframes bubbly {
+  0% {
+    width: 15px;
+    height: 15px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    width: 50px;
+    height: 50px;
+    opacity: 0.1;
+    transform: translateY(-32px);
+  }
+}
