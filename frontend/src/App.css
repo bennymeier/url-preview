@@ -183,3 +183,19 @@ body {
 .no-link-style {
   text-decoration: none;
 }
+
+/* ERROR */
+.error {
+  background: #ff000070;
+  color: var(--backgroundColor);
+  font-size: 15px;
+  text-align: center;
+  border-radius: var(--borderRadius);
+  display: inline-block;
+  padding: 1em;
+  font-weight: bold;
+}
+
+.error .status {
+  font-size: 17px;
+}

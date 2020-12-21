@@ -63,7 +63,12 @@ const LinkPreview: React.FC<LinkPreviewProps> = (props) => {
     return <Loader />;
   }
   if (error) {
-    return <div className="error">{error}</div>;
+    return (
+      <div className="error">
+        <span className="status">Error: </span>
+        {error}
+      </div>
+    );
   }
   return (
     <>
