@@ -26,17 +26,16 @@ app.get("/metainfo", async (req, res) => {
   const description = await getDescription(page);
   const title = await getTitle(page);
   const image = await getImage(page);
-  const domain = await getDomain(page, resUrl);
+  const url = await getDomain(page, resUrl);
 
   await browser.close();
 
   const metadata = {
     title,
     description,
-    domain,
+    url,
     image
   };
-  console.log(metadata);
   res.send(metadata);
 });
 /*

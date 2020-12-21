@@ -13,7 +13,12 @@ const App = () => {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    setPreview(true);
+    if (showPreview) {
+      setPreview(false);
+      setTimeout(() => setPreview(true), 1500);
+    } else {
+      setPreview(true);
+    }
   };
 
   return (
