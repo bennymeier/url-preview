@@ -9,10 +9,10 @@
   "author": "Benjamin Meier",
   "license": "ISC",
   "dependencies": {
-    "browserless": "^8.1.45",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "get-video-id": "^3.1.5",
+    "node-cache": "^5.1.2",
     "puppeteer": "^5.5.0"
   },
   "devDependencies": {

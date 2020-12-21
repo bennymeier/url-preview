@@ -1,12 +1,10 @@
-const express = require("express");
-const cors = require("cors");
-const puppeteer = require("puppeteer");
-const {
-  getDescription,
-  getImage,
-  getTitle,
-  getDomain
-} = require("./utils");
+const express = require('express');
+const cors = require('cors');
+const puppeteer = require('puppeteer');
+const NodeCache = require('node-cache');
+// Cache 5 days, after that time delete entries
+const cache = new NodeCache({ stdTTL: 432000 });
+const { getDescription, getImage, getTitle, getDomain } = require('./utils');
 const app = express();
 const port = process.env.PORT || 4000;
 
@@ -16,9 +14,14 @@ app.use(express.json());
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
-app.get("/metainfo", async (req, res) => {
+app.get('/metainfo', async (req, res) => {
   const { url: resUrl } = req.query;
-
+  // Check for already existing cache entry
+  const hasCached = cache.has(resUrl);
+  if (hasCached) {
+    const getEntry = cache.get(resUrl);
+    return res.send(getEntry);
+  }
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(resUrl);
@@ -28,22 +31,21 @@ app.get("/metainfo", async (req, res) => {
   const image = await getImage(page);
   const url = await getDomain(page, resUrl);
 
+  // Close headless chrome
   await browser.close();
 
   const metadata = {
     title,
     description,
     url,
-    image
+    image,
   };
-  res.send(metadata);
+
+  // Insert entry in cache if not already cached
+  if (!hasCached) {
+    cache.set(resUrl, metadata);
+  }
+
+  // Send response
+  return res.send(metadata);
 });
-/*
-    author: results.author || null,
-        date: results.ogPublishedTime || null,
-        description: results.ogDescription || results.description || null,
-        image: results.ogImage || results.image || results.images[0] || null,
-        publisher: results.ogSiteName || results.publisher || null,
-        title: results.ogTitle || results.title || null,
-        url: results.ogUrl || results.url || null
-*/
