@@ -1,5 +1,5 @@
 ### URL-Preview Generator
-
+![Preview](https://raw.githubusercontent.com/bennymeier/url-preview/master/preview.gif)
 ---
 ##### Benefits
 * Cache Mechanism (5 days)
