@@ -4,12 +4,12 @@
 
 ###### Technologies
 * Node.js
+* Express
 * React
 * Puppeteer
 
 ---
 ###### Todos
-* Show preview component in web
 * Make screenshot from website and show it
 * Implement cache mechanism
 * Write tests
