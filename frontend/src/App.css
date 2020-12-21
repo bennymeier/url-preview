@@ -120,7 +120,7 @@ body {
 
 .preview .image {
   height: 150px;
-  background-size: cover;
+  background-size: contain;
   background-color: #e1e8ed;
   background-repeat: no-repeat;
   background-position: center;
@@ -146,6 +146,7 @@ body {
   letter-spacing: normal;
   overflow: hidden;
 }
+
 .preview .text .description {
   /* display: none; */
   height: 2.6em;
