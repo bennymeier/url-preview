@@ -31,6 +31,7 @@ body {
   margin: 0;
   font-size: 0.7em;
   color: #8d8d8d;
+  background-color: #6868681f;
 }
 
 .url-group input:focus {
