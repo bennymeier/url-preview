@@ -64,9 +64,11 @@ const LinkPreview: React.FC<LinkPreviewProps> = (props) => {
   }
   if (error) {
     return (
-      <div className="error">
-        <span className="status">Error: </span>
-        {error}
+      <div className="container">
+        <div className="error">
+          <span className="status">Error: </span>
+          {error}
+        </div>
       </div>
     );
   }
