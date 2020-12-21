@@ -2,14 +2,14 @@
 
 ---
 
-###### Technologies
+##### Technologies
 * Node.js
 * Express
 * React
 * Puppeteer
 
 ---
-###### Todos
+##### Todos
 * Make screenshot from website and show it
 * Implement cache mechanism
 * Write tests
