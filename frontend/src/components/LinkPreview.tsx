@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { shortenizeUrl } from '../utils';
+import { getUrlObject } from '../utils';
 import API from '../utils/API';
 import Loader from './Loader';
 
@@ -8,7 +8,8 @@ interface LinkPreviewData {
   description: string;
   url: string;
   image: string;
-  shortenizedUrl: string;
+  hostnameUrl: string;
+  originUrl: string;
 }
 interface LinkPreviewProps {
   url: string;
@@ -16,23 +17,35 @@ interface LinkPreviewProps {
 const LinkPreview: React.FC<LinkPreviewProps> = (props) => {
   const { url } = props;
   const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const [data, setData] = useState<LinkPreviewData>({
     title: '',
     description: '',
     url: '',
     image: '',
-    shortenizedUrl: '',
+    hostnameUrl: '',
+    originUrl: '',
   });
-  const [error, setError] = useState('');
-  const { title, description, shortenizedUrl, image } = data;
+  const {
+    title,
+    description,
+    hostnameUrl,
+    image,
+    originUrl,
+    url: originalUrl,
+  } = data;
   const getPreviewData = async () => {
     try {
       const res = await API.get(`/metainfo?url=${url}`);
       const data = res.data as LinkPreviewData;
       if (data) {
         console.log('data ', data);
-        const shortUrl = shortenizeUrl(url);
-        setData({ ...data, shortenizedUrl: shortUrl });
+        const urlObj = getUrlObject(url);
+        setData({
+          ...data,
+          hostnameUrl: urlObj.hostname,
+          originUrl: urlObj.origin,
+        });
         setLoading(false);
       } else {
         setError(`Cannot get information from ${url}`);
@@ -55,21 +68,38 @@ const LinkPreview: React.FC<LinkPreviewProps> = (props) => {
   return (
     <>
       <div className="preview">
-        <div className="left">
-          <div className="image">
-            <img src={image} alt="" />
+        <a
+          className="no-link-style"
+          href={originalUrl}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <div
+            className="image"
+            style={{ backgroundImage: `url(${image})` }}
+          ></div>
+        </a>
+        <div className="text">
+          <div>
+            <a
+              className="title url"
+              href={originalUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              {title}
+            </a>
           </div>
-        </div>
-        <div className="rigth">
-          <div className="title">
-            <h1>{title}</h1>
-          </div>
-          <div className="description">
-            <p>{description}</p>
-          </div>
-          <div className="url">
-            <a href={url} title={shortenizedUrl} rel="noopener noreferrer">
-              {shortenizedUrl}
+          <span className="description">{description}</span>
+          <div>
+            <a
+              className="domain url"
+              href={originUrl}
+              title={hostnameUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              {hostnameUrl}
             </a>
           </div>
         </div>
