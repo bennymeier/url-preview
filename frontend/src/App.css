@@ -200,3 +200,23 @@ body {
 .error .status {
   font-size: 17px;
 }
+
+/* SCREENSHOT COMPONENT */
+.screenshot-container {
+  margin: 2em;
+}
+
+.screenshot-container .bordered {
+  border: 1px dotted black;
+}
+
+.screenshot-container h1 {
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}

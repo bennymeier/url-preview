@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getUrlObject } from '../utils';
 import API from '../utils/API';
 import Loader from './Loader';
+import Screenshot from './Screenshot';
 
 interface LinkPreviewData {
   title: string;
@@ -10,6 +11,7 @@ interface LinkPreviewData {
   image: string;
   hostnameUrl: string;
   originUrl: string;
+  screenshot: string;
 }
 interface LinkPreviewProps {
   url: string;
@@ -25,12 +27,14 @@ const LinkPreview: React.FC<LinkPreviewProps> = (props) => {
     image: '',
     hostnameUrl: '',
     originUrl: '',
+    screenshot: '',
   });
   const {
     title,
     description,
     hostnameUrl,
     image,
+    screenshot,
     originUrl,
     url: originalUrl,
   } = data;
@@ -111,6 +115,7 @@ const LinkPreview: React.FC<LinkPreviewProps> = (props) => {
           </div>
         </div>
       </div>
+      <Screenshot url={hostnameUrl} imageSrc={screenshot} />
     </>
   );
 };
