@@ -4,6 +4,7 @@
 ##### Benefits
 * Cache Mechanism (5 days)
 * Responsive Link Preview Component
+* See screenshot of website
 
 ---
 ##### Technologies
@@ -14,7 +15,6 @@
 
 ---
 ##### Todos
-* Make screenshot from website and show it
 * Write tests
 * Add [puppeteer-extra](https://www.npmjs.com/package/puppeteer-extra) library for using plugins
 * Add [puppeteer-extra-plugin-stealth](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth)
